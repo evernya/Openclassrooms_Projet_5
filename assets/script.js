@@ -23,72 +23,46 @@
 	const arrowRight = document.querySelector('.arrow_right')
 	const arrowLeft = document.querySelector('.arrow_left')
 
+	//Appeler les éléments à bouger image/texte/dot
 	//Créer un index
-
-	let index = 0;
 
 	let dot = document.querySelectorAll('.dot')
 
-	//Écouter un "événement au clique" sur les "flèches droite et gauche"
+	let bannerImg = document.querySelector('.banner-img')
+	let bannerTagline = document.querySelector('p')
 
+	let index = 0;
+
+	changeDotActive();
+
+	//Écouter un "événement au clique" sur les "flèches droite et gauche"
+	//Changement de dot, ajout dot active
+	//Changement image/texte
 	arrowRight.addEventListener('click', () =>{
 		dot[index].classList.remove("dot_selected");
-		if (index < 4) {
-			index++;
-		}
+
+		index = (index + 1 + dot.length) % dot.length;
+		
 		changeDotActive();
-		console.log(changeDotActive)
+		changeImage();
 	})
 
 	arrowLeft.addEventListener('click', () =>{
 		dot[index].classList.remove("dot_selected");
-		if (index >= 0) {
-			index--;
-		}
+
+		index = (index - 1 + dot.length) % dot.length;
+		
 		changeDotActive();
-		console.log(changeDotActive)
+		changeImage();
 	})
 
-	//Quand on change de slide, on change de dot
+	//Fonction rajout de la dot active
 	function changeDotActive (){
 		dot[index].classList.add("dot_selected")
 	}
 
-
-
-
-
-
-
-
-
-
-
-	// //Fonction pour changer d'image
-	// FONCTION "changer image clique droit" ()
-	// 	Parcourir le tableau où sont rangé les images et textes
-
-	// 	for (let i = 0; i < slides.length; i++)
-
-	// 	Si on change de slide avec un clique droit
-	// 		Passer à une autre boucle du tableau 
-	// 	Sinon 
-	// 		Revenir à la boucle arrière
-	// 	FIN Si
-	// FIN FONCTION
-
-	// //Fonction pour changer d'image
-	// FONCTION "changer image clique gauche"
-	// 	Parcourir le tableau où sont rangé les images et textes	
-
-	// 	for (let i = 0; i < slides.length; i++)
-
-	// 	Si on change de slide avec un clique gauche
-	// 		Passer à une boucle arrière du tableau
-	// 	Sinon 
-	// 		Revenir à la boucle avant 
-	// 	FIN SI 
-	// FIN FONCTION
-
-	// //
-
+	//Fonction changer d'image
+	function changeImage (){
+		bannerImg.src = './assets/images/slideshow/' + slides[index].image
+		bannerTagline.innerHTML = slides[index].tagLine;
+	}
