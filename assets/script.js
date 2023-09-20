@@ -42,6 +42,13 @@
 		dot[index].classList.remove("dot_selected");
 
 		index = (index + 1 + dot.length) % dot.length;
+
+		//équivalent à 
+		// index++;
+
+		// if (index > dot.length)
+  		// index = 0;
+
 		
 		changeDotActive();
 		changeImage();
